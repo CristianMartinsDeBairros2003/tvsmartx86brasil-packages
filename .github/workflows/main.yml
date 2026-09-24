@@ -43,7 +43,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }} 
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -55,6 +55,14 @@ jobs:
           echo ':rocket:' >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
           echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo 'dpkg-scanpackages ${{ steps.create-apt-repo.outputs.dir }} /dev/null > ${{ steps.create-apt-repo.outputs.dir }}/Packages' >> $GITHUB_STEP_SUMMARY
+          echo 'gzip --keep --force -9 ${{ steps.create-apt-repo.outputs.dir }}/Packages'  >> $GITHUB_STEP_SUMMARY
+          echo 'echo -e "Date: `LANG=C date -Ru`" >> ${{ steps.create-apt-repo.outputs.dir }}/Release'  >> $GITHUB_STEP_SUMMARY
+          echo 'echo -e 'MD5Sum:' >> ${{ steps.create-apt-repo.outputs.dir }}/Release'  >> $GITHUB_STEP_SUMMARY
+          echo 'printf '$(md5sum ${{ steps.create-apt-repo.outputs.dir }}/Packages.gz | cut --delimiter=' ' --fields=1)' %16d ${{ steps.create-apt-repo.outputs.dir }}/Packages.gz' $(wc --bytes ${{ steps.create-apt-repo.outputs.dir }}/Packages.gz | cut --delimiter=' ' --fields=1) >> ${{ steps.create-apt-repo.outputs.dir }}/Release'
+          echo 'echo -e \nSHA256: >> ${{ steps.create-apt-repo.outputs.dir }}/Release' >> $GITHUB_STEP_SUMMARY
+          echo 'printf '$(sha256sum Packages.gz | cut --delimiter=' ' --fields=1)' %16d Packages.gz' $(wc --bytes Packages.gz | cut --delimiter=' ' --fields=1) >> printf ' '$(sha256sum Packages.gz | cut --delimiter=' ' --fields=1)' %16d Packages.gz' $(wc --bytes Packages.gz | cut --delimiter=' ' --fields=1) >> ${{ steps.create-apt-repo.outputs.dir }}/Release'  >> $GITHUB_STEP_SUMMARY 
+          echo ' gpg --clearsign --digest-algo SHA512 --local-user $USER -o ${{ steps.create-apt-repo.outputs.dir }}/InRelease ${{ steps.create-apt-repo.outputs.dir }}/Release '  >> $GITHUB_STEP_SUMMARY
           echo 'curl -sfLo /etc/apt.trusted.gpg.d/${{ needs.build.outputs.keyring }}.asc ${{ steps.deploy-pages.outputs.page_url }}gpg.key' >> $GITHUB_STEP_SUMMARY
           echo 'echo "deb ${{ steps.deploy-pages.outputs.page_url }} ${{ env.CODENAME }} ${{ env.COMPONENTS }}" >/etc/apt/sources.list.d/${{ env.REPO_NAME }}.list' >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
