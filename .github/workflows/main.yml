@@ -1,8 +1,4 @@
-on:
-  workflow_run:
-    workflows: [Run APT]
-    types:
-      - requested
+on: workflow_dispatch
    
 
 permissions:
