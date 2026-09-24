@@ -11,7 +11,7 @@ env:
   CODENAME: noble
   COMPONENTS: main
   ARCHITECTURES: amd64
-  URL: "deb-amd64 https://cristianmartinsdebairros2003.github.io/tvsmartx86brasil-packages/"
+  REPO_PATH: "CristianMartinsDeBairros2003/tvsmartx86brasil-packages"
 
 jobs:
   build:
@@ -20,49 +20,25 @@ jobs:
       artifact_id: ${{ steps.upload-artifact.outputs.artifact-id }}
       keyring: ${{ steps.create-apt-repo.outputs.keyring }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Create packages
-        run:
-      - uses: morph027/apt-repo-action@v3
-        id: create-apt-repo
-        with:
-          import-from-repo-url: ${{ env.URL }}
+      - name: Display changed files
+        uses:
+          with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        output: 'string'
+            run: echo "${{ steps.changed-files.outputs.filenames }}"
+    name: Publish APT
+    uses: MauroDruwel/apt-repo-action@v4
+  with:
           repo-name: ${{ env.REPO_NAME }}
-          signing-key: ${{ secrets.SIGNING_KEY }}
-          codename: ${{ env.CODENAME }}
-          components: ${{ env.COMPONENTS }}
-          architectures: ${{ env.ARCHITECTURES }}
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          name: github-pages
-          path: ${{ steps.create-apt-repo.outputs.dir }}
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }} 
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-      - name: Adding summary
-        run: |
-          echo ':rocket:' >> $GITHUB_STEP_SUMMARY
-          echo '' >> $GITHUB_STEP_SUMMARY
-          echo '```bash' >> $GITHUB_STEP_SUMMARY
-          echo 'dpkg-scanpackages ${{ steps.create-apt-repo.outputs.dir }} /dev/null > ${{ steps.create-apt-repo.outputs.dir }}/Packages' >> $GITHUB_STEP_SUMMARY
-          echo 'gzip --keep --force -9 ${{ steps.create-apt-repo.outputs.dir }}/Packages'  >> $GITHUB_STEP_SUMMARY
-          echo 'echo -e "Date: `LANG=C date -Ru`" >> ${{ steps.create-apt-repo.outputs.dir }}/Release'  >> $GITHUB_STEP_SUMMARY
-          echo 'echo -e 'MD5Sum:' >> ${{ steps.create-apt-repo.outputs.dir }}/Release'  >> $GITHUB_STEP_SUMMARY
-          echo 'printf '$(md5sum ${{ steps.create-apt-repo.outputs.dir }}/Packages.gz | cut --delimiter=' ' --fields=1)' %16d ${{ steps.create-apt-repo.outputs.dir }}/Packages.gz' $(wc --bytes ${{ steps.create-apt-repo.outputs.dir }}/Packages.gz | cut --delimiter=' ' --fields=1) >> ${{ steps.create-apt-repo.outputs.dir }}/Release'
-          echo 'echo -e \nSHA256: >> ${{ steps.create-apt-repo.outputs.dir }}/Release' >> $GITHUB_STEP_SUMMARY
-          echo 'printf '$(sha256sum Packages.gz | cut --delimiter=' ' --fields=1)' %16d Packages.gz' $(wc --bytes Packages.gz | cut --delimiter=' ' --fields=1) >> printf ' '$(sha256sum Packages.gz | cut --delimiter=' ' --fields=1)' %16d Packages.gz' $(wc --bytes Packages.gz | cut --delimiter=' ' --fields=1) >> ${{ steps.create-apt-repo.outputs.dir }}/Release'  >> $GITHUB_STEP_SUMMARY 
-          echo ' gpg --clearsign --digest-algo SHA512 --local-user $USER -o ${{ steps.create-apt-repo.outputs.dir }}/InRelease ${{ steps.create-apt-repo.outputs.dir }}/Release '  >> $GITHUB_STEP_SUMMARY
-          echo 'curl -sfLo /etc/apt.trusted.gpg.d/${{ needs.build.outputs.keyring }}.asc ${{ steps.deploy-pages.outputs.page_url }}gpg.key' >> $GITHUB_STEP_SUMMARY
-          echo 'echo "deb ${{ steps.deploy-pages.outputs.page_url }} ${{ env.CODENAME }} ${{ env.COMPONENTS }}" >/etc/apt/sources.list.d/${{ env.REPO_NAME }}.list' >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          github_token: ${{ secrets.PAT }}
+          repo_supported_arch: |
+            ${{ env.ARCHITECTURES }}
+          repo_supported_version: |
+            ${{ env.CODENAME }}
+          file: ${{ steps.changed-files.outputs.filenames }}
+          file_target_version: noble
+          public_key: ${{ secrets.PUBLIC }}
+          private_key: ${{ secrets.PRIVATE }}
+          key_passphrase: ${{ secrets.SECRET }}
+          target_repository: ${{ env.REPO_PATH }}
+
