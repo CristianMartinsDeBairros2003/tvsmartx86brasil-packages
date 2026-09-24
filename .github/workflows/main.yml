@@ -1,7 +1,4 @@
-on:
-  release:
-    types:
-      - released
+on: workflow_run
 
 permissions:
   contents: read
