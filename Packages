@@ -2,10 +2,10 @@ Package: smarttv-osrelease
 Version: 1.0
 Architecture: amd64
 Maintainer: Cristian cristianbairros2003@gmail.com
-Filename: ./os-release-1.0.deb
-Size: 704
-MD5sum: 7f0c98dd5ed13d1bf995545c6f9a0e2f
-SHA1: b009803a10b0d2bcce3cfea0e6a95262b67236c3
-SHA256: 6a454f141d8ba236864d9e1f424e233b78a6f5eb8232b3e4f41580b220531501
+Filename: ./os-release.deb
+Size: 1436
+MD5sum: 8d6759f749f691ddae9783a6a380dcca
+SHA1: 42031a412ef7fd2c48f5741bef1de316511894bd
+SHA256: 0ebcbbebb98edf796b060306753c7bc96aa2f155913a58b6abeec725aad067d1
 Description: OS Release Smart TV x86 Brasil
 
