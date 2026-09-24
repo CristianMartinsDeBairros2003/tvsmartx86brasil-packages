@@ -1,2 +1,2 @@
-deb [signed-by=/etc/apt/trusted.gpg.d/KEY.gpg] https://cristianmartinsdebairros2003.github.io/tvsmartx86brasil-packages/ ./
+deb [signed-by=/etc/apt/keyrings/KEY.gpg] https://cristianmartinsdebairros2003.github.io/tvsmartx86brasil-packages/ ./
 
