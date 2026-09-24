@@ -1,5 +1,7 @@
 on:
-  create:
+  release:
+    types:
+      - released
 
 permissions:
   contents: read
