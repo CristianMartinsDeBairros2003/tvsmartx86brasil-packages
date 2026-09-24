@@ -9,10 +9,10 @@ permissions:
   id-token: write
 
 env:
-  REPO_NAME: caddy
-  CODENAME: jammy
+  REPO_NAME: tvsmartx86brasil
+  CODENAME: noble
   COMPONENTS: main
-  ARCHITECTURES: amd64 arm64
+  ARCHITECTURES: amd64
 
 jobs:
   build:
@@ -26,10 +26,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Create packages
-        run: |
-          ...
-          do something funny to create your packages using e.g. fpm, nfpm, ....
-          ...
+        run:
       - uses: morph027/apt-repo-action@v3
         id: create-apt-repo
         with:
