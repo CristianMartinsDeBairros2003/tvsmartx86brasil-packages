@@ -1,4 +1,9 @@
-on: workflow_run
+on:
+  workflow_run:
+    workflows: [Run APT]
+    types:
+      - completed
+   
 
 permissions:
   contents: read
