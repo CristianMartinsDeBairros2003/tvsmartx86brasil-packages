@@ -1,3 +1,15 @@
+Package: smarttv-keyring
+Version: 1.0
+Architecture: amd64
+Maintainer: Cristian cristianbairros2003@gmail.com
+Depends: wget, gpg
+Filename: ./keyring-smarttv.deb
+Size: 1052
+MD5sum: dafa626c48072b2b8dc351265f060e32
+SHA1: 48b5c2a3f979610812ade7fb568ebc4db68bfa86
+SHA256: f49dc1e61f5067490500859b33e3a6c3eea912ee99b99f03af209b0bbce54a7f
+Description: Keyring para a distribuição Linux Smart TV x86 Brasil
+
 Package: smarttv-osrelease
 Version: 1.0
 Architecture: amd64
