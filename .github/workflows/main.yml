@@ -11,7 +11,7 @@ env:
   CODENAME: noble
   COMPONENTS: main
   ARCHITECTURES: amd64
-  URL: "https://cristianmartinsdebairros2003.github.io/tvsmartx86brasil-packages/"
+  URL: "deb-amd64 https://cristianmartinsdebairros2003.github.io/tvsmartx86brasil-packages/"
 
 jobs:
   build:
