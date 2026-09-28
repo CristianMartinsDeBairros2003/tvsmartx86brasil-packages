@@ -2,12 +2,12 @@ Package: smarttv-apps
 Version: 1.0
 Architecture: amd64
 Maintainer: Cristian cristianbairros2003@gmail.com
-Depends: python3-pyqt5
+Depends: python3-pyqt5,lightdm
 Filename: ./tvsmart-apps.deb
-Size: 1264
-MD5sum: 17879e99c5a93ff5f48226eae4a2e74c
-SHA1: 4d0d7995b307b7fcfba8be1c318cb00c6cd38f2e
-SHA256: 0116d82dc1d5d47d62b1865d27ffa374b4e19f0e4098a933781a5e8f2c989bad
+Size: 1616
+MD5sum: 15790df5d4a597775226294dccf0bf2c
+SHA1: 3c3be1e16fd4add515f129bed1dc31672772dbda
+SHA256: e31df740a3dfbedc40bb8ba870e7dd136c150dc9103b337297fbbbce9ef13901
 Description: Aplicativos para TV
 
 Package: smarttv-keyring
