@@ -4,10 +4,10 @@ Architecture: amd64
 Maintainer: Cristian cristianbairros2003@gmail.com
 Depends: python3-pyqt5,lightdm
 Filename: ./tvsmart-apps.deb
-Size: 1616
-MD5sum: 15790df5d4a597775226294dccf0bf2c
-SHA1: 3c3be1e16fd4add515f129bed1dc31672772dbda
-SHA256: e31df740a3dfbedc40bb8ba870e7dd136c150dc9103b337297fbbbce9ef13901
+Size: 1896
+MD5sum: 4680760d113c06d648fedb6cc65137ff
+SHA1: a53bac89f2f9186d84dfaa0ac9bff9829ab503d3
+SHA256: 4a9555c599a52f179f56e46e2bcd343f92ba9713766f562ce9439d943af8a35c
 Description: Aplicativos para TV
 
 Package: smarttv-keyring
