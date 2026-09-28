@@ -26,7 +26,5 @@ jobs:
             amd64
           repo_supported_distro: |
             noble
-            bookworm
-            sid
           private_key: ${{ secrets.PRIVATE }}
           key_passphrase: ${{ secrets.SECRET }}
