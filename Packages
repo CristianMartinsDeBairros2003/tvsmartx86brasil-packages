@@ -1,3 +1,15 @@
+Package: smarttv-apps
+Version: 1.0
+Architecture: amd64
+Maintainer: Cristian cristianbairros2003@gmail.com
+Depends: python3-pyqt5
+Filename: ./tvsmart-apps.deb
+Size: 1264
+MD5sum: 17879e99c5a93ff5f48226eae4a2e74c
+SHA1: 4d0d7995b307b7fcfba8be1c318cb00c6cd38f2e
+SHA256: 0116d82dc1d5d47d62b1865d27ffa374b4e19f0e4098a933781a5e8f2c989bad
+Description: Aplicativos para TV
+
 Package: smarttv-keyring
 Version: 1.0
 Architecture: amd64
@@ -15,9 +27,9 @@ Version: 1.0
 Architecture: amd64
 Maintainer: Cristian cristianbairros2003@gmail.com
 Filename: ./os-release.deb
-Size: 1436
-MD5sum: 8d6759f749f691ddae9783a6a380dcca
-SHA1: 42031a412ef7fd2c48f5741bef1de316511894bd
-SHA256: 0ebcbbebb98edf796b060306753c7bc96aa2f155913a58b6abeec725aad067d1
+Size: 1236
+MD5sum: 0b67694f312286b0cb3dc7e82932de31
+SHA1: 281d0c18005a11f6b5c2f45617d4b00132aa8ee1
+SHA256: 2af07353fd766c8d35fdf204d4abe28bfd53c0ccd40e70466a9a8bfa6e8475b6
 Description: OS Release Smart TV x86 Brasil
 
